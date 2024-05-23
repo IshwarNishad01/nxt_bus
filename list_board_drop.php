@@ -41,10 +41,19 @@ require 'inc/Header.php';
 									</tr>
                                         </thead>
                                         <tbody>
+
+                                       
+
                                            <?php 
-										$city = $bus->query("SELECT bus_id, COUNT(*) as total_routes
-FROM tbl_board_drop_points
-where operator_id=".$sdata['id']." GROUP BY bus_id");
+                                         
+  if ($_SESSION['stype'] == 'sowner') {
+    $city = $bus->query("SELECT bus_id, COUNT(*) as total_routes
+FROM tbl_board_drop_points where operator_id=".$sdata['id']."  GROUP BY bus_id");
+  }else{ 
+
+    $city = $bus->query("SELECT bus_id, COUNT(*) as total_routes
+    FROM tbl_board_drop_points GROUP BY bus_id");
+  }
 										$i=0;
 										while($row = $city->fetch_assoc())
 										{

@@ -147,7 +147,31 @@ if (isset($_POST["type"])) {
                 "action" => "list_code.php",
             ];
         } 
-    } elseif ($_POST['type'] == "edit_bus") {
+    } 
+    
+    elseif ($_POST["type"] == "add_driver") {
+
+        $okey = $_POST["status"];
+        $title = $bus->real_escape_string($_POST["title"]);
+
+        $table = "tbl_driver";
+        $field_values = ["ccode", "status"];
+        $data_values = ["$title", "$okey"];
+
+        $h = new Crud($bus);
+        $check = $h->businsertdata($field_values, $data_values, $table);
+        if ($check == 1) {
+            $returnArr = [
+                "ResponseCode" => "200",
+                "Result" => "true",
+                "title" => "Country Code Add Successfully!!",
+                "message" => "Country Code section!",
+                "action" => "list_code.php",
+            ];
+        } 
+    }
+
+    elseif ($_POST['type'] == "edit_bus") {
         $title = $bus->real_escape_string($_POST['title']);
         $bno = $bus->real_escape_string($_POST['bno']);
         $tick_price = $bus->real_escape_string($_POST['tick_price']);
@@ -1899,7 +1923,7 @@ if (isset($_POST["type"])) {
             } 
 	
         }
-		
+       
 
 		else {
             $returnArr = [

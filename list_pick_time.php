@@ -42,10 +42,15 @@ require 'inc/Header.php';
                                         </thead>
                                         <tbody>
                                            <?php 
+                                             if ($_SESSION['stype'] == 'sowner') {
 										$city = $bus->query("SELECT board_id, COUNT(*) as total_routes
-FROM tbl_sub_route_time
-where operator_id=".$sdata['id']."
+FROM tbl_sub_route_time where operator_id=".$sdata['id']."
 GROUP BY board_id");
+                                             }else{
+                                              $city = $bus->query("SELECT board_id, COUNT(*) as total_routes
+FROM tbl_sub_route_time 
+GROUP BY board_id");
+                                             }
 										$i=0;
 										while($row = $city->fetch_assoc())
 										{

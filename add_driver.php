@@ -134,7 +134,7 @@ require 'inc/Header.php';
                                        
                                     </select>
                                 </div>
-                                    <button type="submit" class="btn btn-primary"><?php echo $lang['Add_Driver'];?></button>
+                                    <button type="submit"  name="add_driver"  class="btn btn-primary"><?php echo $lang['Add_Driver'];?></button>
                                 </form>
 				 <?php } ?>
                 </div>
